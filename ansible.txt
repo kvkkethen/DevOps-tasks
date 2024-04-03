@@ -1,0 +1,12 @@
+to copy files from master to worker node
+ansible demo -m copy -a "src=/home/ansible/docker1.sh dest=/home/ansible/"  
+
+to run the file from master to worker node 
+ansible demo -m ansible.builtin.shell -a "bash /home/ansible/docker.sh"
+ansible demo -b -a "sh docker.sh"
+
+
+
+movefile from master to worker node
+
+ansible demo -m shell -a "mv /home/ansible/move.txt /home/ansible/devops/"

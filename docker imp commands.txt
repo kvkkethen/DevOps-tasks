@@ -1,0 +1,18 @@
+To over ride the file from root user to container
+
+create a file in root user as index.html
+
+docker cp index.html <container_id>:/usr/local/apache2/htdocs/index.html
+
+
+
+
+
+
+To run container without images
+docker run -it -d -p 8000:80 nginx
+
+
+
+To remove unsed containers
+docker container prune

@@ -1,0 +1,37 @@
+Build a project using pipe line script
+
+pipeline {
+    agent any
+    tools{
+        maven 'maven'
+    }
+   
+    stages {
+         stage('clone') {
+            steps {
+                git 'https://github.com/kvkkethen/maven-project.git'
+            }
+        }
+        stage('valiate') {
+            steps {
+                sh 'mvn validate'
+            }
+        }
+        stage('compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+        stage('test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        
+    }
+}

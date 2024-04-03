@@ -1,0 +1,56 @@
+ - name: Take snapshot of container
+      command: docker commit my_nginx_container my_nginx_snapshot
+
+    - name: Tag snapshot
+      command: docker tag my_nginx_snapshot kvkkethen/my_nginx_snapshot:latest
+
+    - name: Push snapshot to Docker Hub
+      command: docker push kvkkethen/ansible
+
+
+
+
+
+
+
+
+
+---
+- name: operations
+  hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: Update system
+      shell: sudo yum update -y
+
+    - name: Check docker service
+      command: systemctl is-active docker
+      register: docker_service_status
+      ignore_errors: true
+
+    - name: Install docker
+      shell: sudo yum install docker -y
+
+    - name: Docker version
+      shell: docker --version
+
+    - name: Pull nginx image
+      shell: docker pull nginx
+
+    - name: Run a container
+      shell: docker run -it -d nginx
+      register: container_id
+      ignore_errors: true
+
+    - name: Docker login
+      shell: docker login -u username -p password
+      when: container_id is succeeded
+
+    - name: Take snapshot of container
+      shell: docker commit {{ container_id.stdout }} kvkkethen/ansible
+      when: container_id is succeeded
+
+    - name: Push snapshot to Docker Hub
+      shell: docker push kvkkethen/ansible

@@ -1,0 +1,15 @@
+install java
+sudo amazon-linux-extras install java-openjdk11 -y
+copy frrom chrome https://www.jenkins.io/doc/book/installing/linux/
+jenkins --version 
+systemctl status jenkins
+systemctl start jenkins
+public ip copy paste on broeswr
+copy path in browser and comte linux paste it 
+$sudo cat path
+it give password copy it paste it on briswer
+
+
+install suggest plugins
+create admin user
+ give passwords and names all as admin

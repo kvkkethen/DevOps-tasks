@@ -1,0 +1,15 @@
+Docker Commands
+
+
+To over ride content from root user file to container file (or)copy file from root user to container 
+$ docker exec -it <container id> /bin/bash 
+$ docker cp index.html <container id>:path(/usr/local/apache2/htdocs/index.html)
+Run docker cotainer without pull image
+$ docker run -it -d -p 8000:80 nginx
+To remove images from running container
+$ docker rmi -f nginx
+To remove unused container 
+$ docker container prune
+To remove unused images
+$ docker images prune
+
